@@ -1,4 +1,4 @@
-# ** Snapshot service for telos mainnet **
+# Snapshot service for telos mainnet
 
 ## This contains an small sciprt to take snapshots and compress/move to a webroot folder served by NGINX
 
