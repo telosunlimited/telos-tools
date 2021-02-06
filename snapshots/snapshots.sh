@@ -17,7 +17,7 @@ block_num=`cleos get block $block_id | jq ".block_num"`
 
 #compress and move the file to the directory
 
-tar -cvzf ${DST}/telos-mainet-${NOW}-blk-${block_num}.tar.gz ${NODEOS_SNAPSHOT_DIR}snapshot-${block_id}.bin
+tar -cvzf ${DST}/telos-mainet-${NOW}-blk-${block_num}.tar.gz -C ${NODEOS_SNAPSHOT_DIR} snapshot-${block_id}.bin
 
 #remove original bin file
 
