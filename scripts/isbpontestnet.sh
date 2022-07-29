@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Report date: $(date)"
+
+
 mainnet_url="https://mainnet.telos.net"
 
 #gets the list
@@ -8,6 +11,14 @@ cleos --url $mainnet_url system listproducers -l 150 | grep -v "EOS1111111111111
 testnet_url="https://testnet.telos.net"
 
 input="bplist.txt"
+transform="mainnet-to-testnet.txt"
+while IFS=, read -r mainnet testnet
+do
+        echo "$mainnet is $testnet on Testnet"
+        sed -i "s|$mainnet|$testnet|g" $input
+done < "$transform"
+
+
 while IFS= read -r bp
 do
         last_produced=`curl -s $testnet_url'/v2/history/get_actions?producer='$bp'&limit=1' | jq -r '.actions[].timestamp'`
